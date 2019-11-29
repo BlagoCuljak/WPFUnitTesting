@@ -83,6 +83,7 @@ namespace UnitTestProjectWPF
         {
             //test start
             // LeftClick on Button "OPEN 2nd Window" at (77,73)
+            var hand0 = desktopSession.WindowHandles;
             Console.WriteLine("LeftClick on Button \"OPEN 2nd Window\" at (77,73)");
             string xpath_LeftClickButtonOPEN2ndWin_77_73 = "/Window[@ClassName=\"Window\"][@Name=\"MainWindow\"]/Button[@Name=\"OPEN 2nd Window\"][@AutomationId=\"Open\"]";
             var winElem_LeftClickButtonOPEN2ndWin_77_73 = desktopSession.FindElementByAbsoluteXPath(xpath_LeftClickButtonOPEN2ndWin_77_73);
@@ -95,8 +96,9 @@ namespace UnitTestProjectWPF
                 Assert.Fail($"Failed to find element using xpath: {xpath_LeftClickButtonOPEN2ndWin_77_73}");
                 return;
             }
-
-
+            var hand = desktopSession.WindowHandles;
+            var handCurrent = desktopSession.CurrentWindowHandle;
+            desktopSession.SwitchTo().Window(hand[0]);
             // LeftClick on Button "OPEN 3nd Window" at (75,65)
             Console.WriteLine("LeftClick on Button \"OPEN 3nd Window\" at (75,65)");
             string xpath_LeftClickButtonOPEN3ndWin_75_65 = "/Window[@ClassName=\"Window\"]/Custom[@ClassName=\"_2ndWindow\"]/Button[@Name=\"OPEN 3nd Window\"][@AutomationId=\"Open\"]";
@@ -110,7 +112,8 @@ namespace UnitTestProjectWPF
                 Assert.Fail($"Failed to find element using xpath: {xpath_LeftClickButtonOPEN3ndWin_75_65}");
                 return;
             }
-
+            hand = desktopSession.WindowHandles;
+            desktopSession.SwitchTo().Window(hand[0]);
 
             // LeftClick on Edit "" at (92,15)
             Console.WriteLine("LeftClick on Edit \"\" at (92,15)");
